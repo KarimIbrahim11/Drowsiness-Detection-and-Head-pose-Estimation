@@ -24,6 +24,7 @@ https://github.com/KarimIbrahim11/Drowsiness-Detection-and-Head-pose-Estimation/
 
 ## Results duplication
 1- create a virtual env, I personaly use conda. 
-2- run the command: `pip install -r requirements.txt`
-3- make sure to have a camera connected and run `python main.py` 
+2- `conda env create -f env.yaml`
+3- `conda activate env`
+4- `python main.py`
 
