@@ -39,20 +39,24 @@ def calculate_ear(landmarks, refer_idxs, frame_width, frame_height):
 
 def draw_axes(forehead_2d, x, y, z, image):
     p1 = (int(forehead_2d[0]), int(forehead_2d[1]))
-    p2 = (int(forehead_2d[0] + 5 * y), int(forehead_2d[1] - x * 5))
+    p2 = (int(forehead_2d[0] - 20), int(forehead_2d[1] + 35))
     cv2.line(image, p1, p2, (255, 0, 0), 3)
 
     p3 = (int(forehead_2d[0]), int(forehead_2d[1]))
     p4 = (
-        int(forehead_2d[0] + 50 * math.cos(math.radians(x))),
-        int(forehead_2d[1] + 50 * math.sin(math.radians(x))))
+        int(forehead_2d[0] + 50),
+        int(forehead_2d[1]))
     cv2.line(image, p3, p4, (0, 255, 0), 3)
 
     p5 = (int(forehead_2d[0]), int(forehead_2d[1]))
     p6 = (
-        int(forehead_2d[0] + 50 * math.sin(math.radians(z))),
-        int(forehead_2d[1] - 50 * math.cos(math.radians(z))))
+        int(forehead_2d[0]),
+        int(forehead_2d[1] - 50))
     cv2.line(image, p5, p6, (0, 0, 255), 3)
+
+    p7 = (int(forehead_2d[0]), int(forehead_2d[1]))
+    p8 = (int(forehead_2d[0] + y * 5), int(forehead_2d[1] - x * 5))
+    cv2.arrowedLine(image, p7, p8, (255, 0, 255), 3)
 
 
 def calculate_avg_ear(landmarks, left_eye_idxs, right_eye_idxs, image_w, image_h):
@@ -217,8 +221,9 @@ while True:
                 totalTime = end - start
                 fps = 1 / totalTime
                 # print('FPS', fps)
-                plot_text(image, f'FPS: {int(fps)}', (int(0.78 * img_w), int(0.4 * img_h)), (0, 255, 0), cv2.FONT_HERSHEY_SIMPLEX,
-                            1, 1)
+                plot_text(image, f'FPS: {int(fps)}', (int(0.78 * img_w), int(0.4 * img_h)), (0, 255, 0),
+                          cv2.FONT_HERSHEY_SIMPLEX,
+                          1, 1)
 
                 # mp_drawing.draw_landmarks(
                 #     image=image,
